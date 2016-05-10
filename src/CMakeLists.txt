@@ -18,6 +18,13 @@ elseif(${JANUS_BUILD_OPENCV_WRAPPER} AND ${JANUS_BUILD_PP5_WRAPPER})
   message(ERROR "You cannot build OpenCV I/O and PittPatt 5 I/O at the same time")
 endif()
 
+option(JANUS_BUILD_CAFFE_WRAPPER "Build Janus implementation using caffe" OFF)
+if(${JANUS_BUILD_CAFFE_WRAPPER})
+  find_package(Caffe REQUIRED)
+  find_package(OpenCV REQUIRED)
+  add_subdirectory(caffe)
+endif()
+
 # Janus API documentation
 add_subdirectory(doxygen)
 
